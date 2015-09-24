@@ -43,7 +43,11 @@ $(document).on('ready', function () {
 
     var result = '```\n';
 
-    result += section('Components tested');
+    result += bolded('Date of playtest: ');
+    result += italic($('#date'));
+    result += '\n';
+
+    result += bolded('Components tested: ');
     result += italic($('#components-tested'));
     result += '\n\n';
 

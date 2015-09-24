@@ -41,6 +41,7 @@ label span {
   color: #777;
 }
 
+input[type="date"],
 input[type="text"],
 input[type="number"],
 textarea {
