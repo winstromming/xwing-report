@@ -55,7 +55,7 @@ $(document).on('ready', function () {
     result += '\n';
     result += text($('#squad-team-a'));
     result += '\n\n';
-    if ($('#squad-notes-team-a').length) {
+    if ($('#squad-notes-team-a').val().length) {
       result += bolded('Notes: ');
       result += italic($('#squad-notes-team-a'));
       result += '\n\n';
@@ -65,7 +65,7 @@ $(document).on('ready', function () {
     result += '\n';
     result += text($('#squad-team-b'));
     result += '\n\n';
-    if ($('#squad-notes-team-b').length) {
+    if ($('#squad-notes-team-b').val().length) {
       result += bolded('Notes: ');
       result += italic($('#squad-notes-team-b'));
       result += '\n\n';
@@ -76,43 +76,59 @@ $(document).on('ready', function () {
     result += bolded('Victor: ');
     result += text($('#victor'));
     result += '\n';
-    result += bolded('Points destroyed: ');
-    result += text($('#destroyed-team-a').val() + ' (Team A) vs ');
-    result += text($('#destroyed-team-b').val() + ' (Team B)');
+    if ($('#destroyed-team-a').val().length && $('#destroyed-team-b').val().length) {
+      result += bolded('Points destroyed: ');
+      result += text($('#destroyed-team-a').val() + ' (Team A) vs ');
+      result += text($('#destroyed-team-b').val() + ' (Team B)');
+      result += '\n';
+    }
+    if ($('#rounds').val().length) {
+      result += bolded('Total rounds: ');
+      result += text($('#rounds'));
+      result += '\n';
+    }
+    if ($('#time').val().length) {
+      result += bolded('Total time: ');
+      result += text($('#time').val() + 'mins');
+      result += '\n';
+    }
     result += '\n';
-    result += bolded('Total rounds: ');
-    result += text($('#rounds'));
-    result += '\n';
-    result += bolded('Total time: ');
-    result += text($('#time').val() + 'mins');
-    result += '\n\n';
 
     result += section('Data Skewing');
     result += '\n';
     result += bolded('Luck Skew: ');
     result += text($('#luck-skew'));
-    result += text(', skewed in favour of ' + $('#luck-favour').val());
+    result += text(' in favour of ' + $('#luck-favour').val());
     result += '\n';
     result += bolded('Skill Skew: ');
     result += text($('#skill-skew'));
-    result += text(', skewed in favour of ' + $('#skill-favour').val());
-    result += '\n\n';
+    result += text(' in favour of ' + $('#skill-favour').val());
+    result += '\n';
+    if ($('#notes-skew').val().length) {
+      result += italic($('#notes-skew'));
+      result += '\n';
+    }
+    result += '\n';
 
     result += section('Match Events (ships destroyed per round)');
     result += text($('#match-events'));
     result += '\n\n';
 
-    if ($('#team-a-notes').length || $('#team-b-notes').length) {
+    if ($('#team-a-notes').val().length || $('#team-b-notes').val().length) {
       result += section('Player Notes');
       result += '\n';
-      result += bolded('Team A:');
-      result += '\n';
-      result += italic($('#team-a-notes'));
-      result += '\n\n';
-      result += bolded('Team B:');
-      result += '\n';
-      result += italic($('#team-b-notes'));
-      result += '\n';
+      if ($('#team-a-notes').val().length) {
+        result += bolded('Team A:');
+        result += '\n';
+        result += italic($('#team-a-notes'));
+        result += '\n\n';
+      }
+      if ($('#team-b-notes').val().length) {
+        result += bolded('Team B:');
+        result += '\n';
+        result += italic($('#team-b-notes'));
+        result += '\n';
+      }
     }
 
     result += '```';
