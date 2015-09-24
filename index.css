@@ -1,0 +1,121 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font: 13px/20px Helvetica, Arial, sans-serif;
+  padding: 1rem;
+  background: #f0f0f0;
+}
+
+fieldset {
+  border: 1px solid #ccc;
+  padding: 1rem 1rem 0;
+  margin: 0 0 1rem;
+}
+fieldset
+.clear { width: 100%; overflow: hidden; }
+.clear:after {
+  display: table;
+  content: "";
+  clear: both;
+}
+legend {
+  color: #777;
+  padding: 0 0.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+h2 {
+  margin: 1rem 0;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+}
+label span {
+  font-weight: normal;
+  color: #777;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+  line-height: 20px;
+  padding: 10px;
+  font: 13px/20px Helvetica, Arial, sans-serif;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+input[type="number"].wide {
+  width: 7em;
+}
+input[type="number"].thin {
+  width: 4em;
+}
+
+.group {
+  margin-bottom: 1rem;
+}
+.left { float: left; width: 49%; }
+.right { float: right; width: 49%; }
+.stack { float: left; margin-right: 1rem; }
+
+.button {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  border-radius: 10px;
+  background: #f9a227;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  padding: 20px;
+  margin: 1rem 0;
+  cursor: pointer;
+  position: relative;
+  top: 0;
+  transition: top 0.2s, box-shadow 0.2s;
+  box-shadow:
+    0 5px 0 0 #df8507,
+    0 -2px 0 0 #ffc675;
+}
+.button:active {
+  top: 4px;
+    outline: 0;
+  box-shadow:
+    0 1px 0 0 #df8507,
+    0 -2px 0 0 #ffc675;
+}
+.button:focus {
+  outline: 0;
+}
+
+.button.copy {
+  font-size: 16px;
+  padding: 10px;
+  background: #e42222;
+  box-shadow:
+    0 5px 0 0 #b91919,
+    0 -2px 0 0 #ff6868;
+}
+.button.copy:active {
+  box-shadow:
+    0 1px 0 0 #b91919,
+    0 -2px 0 0 #ff6868;
+}
+
+#report {
+  padding: 1rem;
+  background: white;
+}
+
+@media screen and (max-width: 700px) {
+  .left { float: none; width: 100%; }
+  .right { float: none; width: 100%; }
+  .stack { float: none; margin-right: 0; }
+}
