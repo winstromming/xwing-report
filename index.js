@@ -41,7 +41,7 @@ $(document).on('ready', function () {
 
     event.preventDefault();
 
-    var result = '';
+    var result = '```\n';
 
     result += section('Components tested');
     result += italic($('#components-tested'));
@@ -111,7 +111,7 @@ $(document).on('ready', function () {
       result += '\n';
     }
 
-    result += '';
+    result += '```';
 
     $('#report').html(result);
     $('#completed').show();

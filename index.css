@@ -5,7 +5,7 @@
 }
 body {
   font: 13px/20px Helvetica, Arial, sans-serif;
-  padding: 1rem;
+  padding: 1rem 1rem 2rem;
   background: #f0f0f0;
 }
 
@@ -66,8 +66,9 @@ input[type="number"].thin {
 .stack { float: left; margin-right: 1rem; }
 
 .button {
-  width: 100%;
   border: 0;
+  width: 100%;
+  display: block;
   outline: 0;
   border-radius: 10px;
   background: #f9a227;
@@ -115,6 +116,9 @@ input[type="number"].thin {
 }
 
 @media screen and (max-width: 700px) {
+  body { padding: 0 0 2rem; }
+  h2 { margin: 1rem; }
+  .button { width: 80%; margin: 1rem auto; }
   .left { float: none; width: 100%; }
   .right { float: none; width: 100%; }
   .stack { float: none; margin-right: 0; }
