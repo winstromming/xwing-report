@@ -1,5 +1,7 @@
 $(document).on('ready', function () {
 
+  var hasDownloadSupport = (window.Blob && window.URL);
+
   function section(e) {
     var s = null;
     if (e instanceof jQuery) {
@@ -37,9 +39,24 @@ $(document).on('ready', function () {
     return s;
   }
 
-  $('#submit').on('click', function (event) {
+  function createFilename() {
+    var nameA = $('#name-team-a').val();
+    var nameB = $('#name-team-b').val();
+    var date = $('#date').val();
+    var parts = ['X-Wing Playtest Report'];
 
-    event.preventDefault();
+    if (nameA && nameB) {
+      parts.push(nameA + ' vs ' + nameB);
+    }
+
+    if (date) {
+      parts.push(date);
+    }
+
+    return parts.join(' - ') + '.txt';
+  }
+
+  function generateReport() {
 
     var result = '```\n';
 
@@ -133,9 +150,29 @@ $(document).on('ready', function () {
 
     result += '```';
 
-    $('#report').html(result);
-    $('#completed').show();
+    return result;
 
+  }
+
+  $('#submit').on('click', function (event) {
+    event.preventDefault();
+
+    $('#report').html(generateReport());
+    $('#completed').show();
   });
+
+  if (hasDownloadSupport) {
+    $('#download').removeClass('hide');
+
+    var downloadLink = document.getElementById('download');
+
+    downloadLink.addEventListener('click', function () {
+      var result = generateReport();
+      var file = new Blob([result], {type: 'text/plain'});
+
+      downloadLink.href = URL.createObjectURL(file);
+      downloadLink.download = createFilename();
+    }, false);
+  }
 
 });

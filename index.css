@@ -116,6 +116,13 @@ input[type="number"].thin {
   background: white;
 }
 
+#download {
+  display: block;
+}
+#download.hide {
+  display: none;
+}
+
 @media screen and (max-width: 700px) {
   body { padding: 0 0 2rem; }
   h2 { margin: 1rem; }
