@@ -58,8 +58,6 @@ $(document).on('ready', function () {
 
   function generateReport() {
 
-    var result = '```\n';
-
     result += bolded('Date of playtest: ');
     result += italic($('#date'));
     result += '\n';
@@ -147,8 +145,6 @@ $(document).on('ready', function () {
         result += '\n';
       }
     }
-
-    result += '```';
 
     return result;
 
