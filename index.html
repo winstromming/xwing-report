@@ -11,21 +11,16 @@
   </head>
   <body>
     <form id="form">
-      <h2>X-Wing Playtest Report</h2>
-      <fieldset>
-        <div class="group">
-          <label>Date of playtest</label>
-          <input id="date" type="date" />
-        </div>
-        <div class="group">
-          <label>Components tested</label>
-          <textarea id="components-tested" rows="2" placeholder="Proton Rockets v3, Bossk (Crew) v2"></textarea>
-        </div>
-      </fieldset>
-      <h2>Squad Composition</h2>
+      <h2>Setup</h2>
       <div class="clear">
+        <fieldset>
+          <div class="group">
+            <label>Date of game:</label>
+            <input id="date" type="date" />
+          </div>
+        </fieldset>
         <fieldset class="left">
-          <legend>Team A</legend>
+          <legend>Player One</legend>
           <div class="group">
             <label>Name:</label>
             <input id="name-team-a" type="text" placeholder="Alex Davy" />
@@ -35,12 +30,12 @@
             <textarea id="squad-team-a" rows="10" placeholder="Paste from Squad Builder using BBCode format"></textarea>
           </div>
           <div class="group">
-            <label>Squad Notes:</label>
+            <label>Squad Notes (optional):</label>
             <textarea id="squad-notes-team-a" rows="3"></textarea>
           </div>
         </fieldset>
         <fieldset class="right">
-          <legend>Team B</legend>
+          <legend>Player Two</legend>
           <div class="group">
             <label>Name:</label>
             <input id="name-team-b" type="text" placeholder="Frank Brooks" />
@@ -50,7 +45,7 @@
             <textarea id="squad-team-b" rows="10" placeholder="Paste from Squad Builder using BBCode format"></textarea>
           </div>
           <div class="group">
-            <label>Squad Notes:</label>
+            <label>Squad Notes (optional):</label>
             <textarea id="squad-notes-team-b" rows="3"></textarea>
           </div>
         </fieldset>
@@ -59,16 +54,16 @@
       <fieldset>
         <legend>Match Record</legend>
         <div class="group">
-          <label>Victor:</label>
+          <label>Winner:</label>
           <select id="victor">
-            <option value="Team A">Team A</option>
-            <option value="Team B">Team B</option>
+            <option value="Player One">Player One</option>
+            <option value="Player Two">Player Two</option>
           </select>
         </div>
         <div class="group stack">
           <label>Points destroyed:</label>
-          <input id="destroyed-team-a" type="number" class="wide" placeholder="Team A" min="0" max="100" />
-          <input id="destroyed-team-b" type="number" class="wide" placeholder="Team B" min="0" max="100"  />
+          <input id="destroyed-team-a" type="number" class="wide" placeholder="Player One" min="0" max="100" />
+          <input id="destroyed-team-b" type="number" class="wide" placeholder="Player Two" min="0" max="100"  />
         </div>
         <div class="group stack">
           <label>Rounds:</label>
@@ -80,35 +75,24 @@
         </div>
       </fieldset>
       <fieldset>
-        <legend>Data Skewing</legend>
-        <div class="group stack">
-          <label>Luck Skew</label>
-          <input id="luck-skew" type="number" class="thin" value="1" min="1" max="3"> in favour of
-          <select id="luck-favour">
-            <option selected="selected">Neither</option>
-            <option>Team A</option>
-            <option>Team B</option>
-          </select>
+        <legend>Concerns</legend>
+        <div class="group">
+          <label>(Major) Functionality/Usability:</label>
+          <textarea id="concerns-major-usability" rows="10" placeholder="Here is where you list concerns about whether a card works, unforeseen interactions, whether the abilities contribute to the game, etc."></textarea>
         </div>
-        <div class="group right">
-          <label>Skill Skew</label>
-          <input id="skill-skew" type="number" class="thin" value="1" min="1" max="3"> in favour of
-          <select id="skill-favour">
-            <option selected="selected">Neither</option>
-            <option>Team A</option>
-            <option>Team B</option>
-          </select>
+        <div class="group">
+          <label>(Major) Balance:</label>
+          <textarea id="concerns-major-balance" rows="10" placeholder="Here is where you list concerns about the costs of cards, how game balance is impacted, whether it's too good or not good enough, etc."></textarea>
         </div>
-        <div class="group clear">
-          <label>Notes on data skew</label>
-          <textarea id="notes-skew" rows="2"></textarea>
+        <div class="group">
+          <label>(Minor) Other:</label>
+          <textarea id="concerns-minor-other" rows="4" placeholder="Here is where you can list other concerns. These may be grammatical, thematic, language consistency, etc."></textarea>
         </div>
       </fieldset>
       <fieldset>
-        <legend>Match Events</legend>
-        <p class="group info">Match events should contain, at minimim, rounds when ships were removed from the table. If possible, also include who was attacking and how much damage was done per attack. Make a note of any notable Critical Hits that were dealt.</p>
+        <legend>(Optional) Play by Play</legend>
+        <p class="group info">List out rounds and when ships were destroyed, took damage, or otherwise important events to support your report. Only include this if you think it supports a concern you listed above. Do not feel compelled to include this if you do not think it contributes to your argument.</p>
         <div class="group">
-          <label>Ships destroyed per round:</label>
           <textarea id="match-events" rows="10" cols="30">Round 2:
 - Ship 1 (A)
 - Ship 1 (B)
@@ -116,18 +100,6 @@ Round 4:
 - Ship 2 (A)
 -Round 7:
 - Ship 3 (A)</textarea>
-        </div>
-      </fieldset>
-      <fieldset class="clear">
-        <legend>Player Notes</legend>
-        <p class="group info">Description of notable events and strategies, abilities that were confusing or perfect, thoughts during squad-building, etc.</p>
-        <div class="group left">
-          <label>Team A:</label>
-          <textarea id="team-a-notes" rows="10" cols="30"></textarea>
-        </div>
-        <div class="group right">
-          <label>Team B:</label>
-          <textarea id="team-b-notes" rows="10" cols="30"></textarea>
         </div>
       </fieldset>
       <button id="submit" type="button" class="button">Format</button>

@@ -58,92 +58,74 @@ $(document).on('ready', function () {
 
   function generateReport() {
 
-    result += bolded('Date of playtest: ');
-    result += italic($('#date'));
-    result += '\n';
+    var result = '';
 
-    result += bolded('Components tested: ');
-    result += italic($('#components-tested'));
+    // Date
+    result += bolded('Date of game: ');
+    result += '\n';
+    result += text($('#date'));
     result += '\n\n';
 
-    result += section('Squad Composition (Team A - ' + $('#name-team-a').val() + ')');
-    result += '\n';
-    result += text($('#squad-team-a'));
-    result += '\n\n';
+    // Player one
+    result += section($('#name-team-a').val());
     if ($('#squad-notes-team-a').val().length) {
-      result += bolded('Notes: ');
       result += italic($('#squad-notes-team-a'));
       result += '\n\n';
     }
-
-    result += section('Squad Composition (Team B - ' + $('#name-team-b').val() + ')');
-    result += '\n';
-    result += text($('#squad-team-b'));
+    result += text($('#squad-team-a'));
     result += '\n\n';
+
+    // Player two
+    result += section($('#name-team-b').val());
     if ($('#squad-notes-team-b').val().length) {
-      result += bolded('Notes: ');
       result += italic($('#squad-notes-team-b'));
       result += '\n\n';
     }
-
-    result += section('Match Record');
-    result += '\n';
-    result += bolded('Victor: ');
-    result += text($('#victor'));
-    result += '\n';
-    if ($('#destroyed-team-a').val().length && $('#destroyed-team-b').val().length) {
-      result += bolded('Points destroyed: ');
-      result += text($('#destroyed-team-a').val() + ' (Team A) vs ');
-      result += text($('#destroyed-team-b').val() + ' (Team B)');
-      result += '\n';
-    }
-    if ($('#rounds').val().length) {
-      result += bolded('Total rounds: ');
-      result += text($('#rounds'));
-      result += '\n';
-    }
-    if ($('#time').val().length) {
-      result += bolded('Total time: ');
-      result += text($('#time').val() + 'mins');
-      result += '\n';
-    }
-    result += '\n';
-
-    result += section('Data Skewing');
-    result += '\n';
-    result += bolded('Luck Skew: ');
-    result += text($('#luck-skew'));
-    result += text(' in favour of ' + $('#luck-favour').val());
-    result += '\n';
-    result += bolded('Skill Skew: ');
-    result += text($('#skill-skew'));
-    result += text(' in favour of ' + $('#skill-favour').val());
-    result += '\n';
-    if ($('#notes-skew').val().length) {
-      result += italic($('#notes-skew'));
-      result += '\n';
-    }
-    result += '\n';
-
-    result += section('Match Events (ships destroyed per round)');
-    result += text($('#match-events'));
+    result += text($('#squad-team-b'));
     result += '\n\n';
 
-    if ($('#team-a-notes').val().length || $('#team-b-notes').val().length) {
-      result += section('Player Notes');
-      result += '\n';
-      if ($('#team-a-notes').val().length) {
-        result += bolded('Team A:');
-        result += '\n';
-        result += italic($('#team-a-notes'));
-        result += '\n\n';
+    // Who won?
+    result += section('Who won?');
+    if ($('#victor').val() === 'Player One') {
+      result += text($('#name-team-a'));
+    } else {
+      result += text($('#name-team-b'));
+    }
+    if ($('#destroyed-team-a').val().length && $('#destroyed-team-b').val().length) {
+      if ($('#victor').val() === 'Player One') {
+        result += ' (' + $('#destroyed-team-a').val() + ' vs ' + $('#destroyed-team-b').val() + ')';
+      } else {
+        result += ' (' + $('#destroyed-team-b').val() + ' vs ' + $('#destroyed-team-a').val() + ')';
       }
-      if ($('#team-b-notes').val().length) {
-        result += bolded('Team B:');
-        result += '\n';
-        result += italic($('#team-b-notes'));
-        result += '\n';
-      }
+    }
+    if ($('#rounds').val().length) {
+      result += ' on Round ' + text($('#rounds'));
+    }
+    if ($('#time').val().length) {
+      result += ' at ' + text($('#time').val() + 'mins');
+    }
+    result += '\n\n';
+
+    if ($('#match-events').val().length) {
+      result += section('Play by Play');
+      result += text($('#match-events'));
+      result += '\n\n';
+    }
+
+    if ($('#concerns-major-usability').val().length) {
+      result += section('Major usability concerns');
+      result += text($('#concerns-major-usability'));
+      result += '\n\n';
+    }
+    if ($('#concerns-major-balance').val().length) {
+      result += section('Major balance concerns');
+      result += text($('#concerns-major-balance'));
+      result += '\n\n';
+    }
+    if ($('#concerns-minor-other').val().length) {
+      result += section('Minor concerns');
+      result += text($('#concerns-minor-other'));
+      result += '\n\n';
     }
 
     return result;
