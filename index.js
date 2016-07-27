@@ -1,4 +1,6 @@
 $(document).on('ready', function () {
+  // default date to today
+  $('#date').val((new Date()).toISOString().split(/T/)[0])
 
   var hasDownloadSupport = (window.Blob && window.URL);
 
