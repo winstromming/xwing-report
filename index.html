@@ -1,112 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>X-Wing Reporter</title>
     <meta charset="utf-8" />
+    <title>X-Wing: Playtest Report Form</title>
     <meta name="robots" content="index, follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="index.css" />
-    <script type="text/javascript" src="jquery.js"></script>
-    <script type="text/javascript" src="index.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400" />
+    <link rel="stylesheet" type="text/css" href="assets/report.css" />
   </head>
   <body>
-    <form id="form">
-      <h2>Setup</h2>
-      <div class="clear">
-        <fieldset>
-          <div class="group">
-            <label>Date of game:</label>
-            <input id="date" type="date" />
-          </div>
-        </fieldset>
-        <fieldset class="left">
-          <legend>Player One</legend>
-          <div class="group">
-            <label>Name:</label>
-            <input id="name-team-a" type="text" placeholder="Alex Davy" />
-          </div>
-          <div class="group">
-            <label>Squad:</label>
-            <textarea id="squad-team-a" rows="10" placeholder="You can paste from Squad Builder using the BBCode format option"></textarea>
-          </div>
-          <div class="group">
-            <label>Squad Notes (optional):</label>
-            <textarea id="squad-notes-team-a" rows="3"></textarea>
-          </div>
-        </fieldset>
-        <fieldset class="right">
-          <legend>Player Two</legend>
-          <div class="group">
-            <label>Name:</label>
-            <input id="name-team-b" type="text" placeholder="Frank Brooks" />
-          </div>
-          <div class="group">
-            <label>Squad:</label>
-            <textarea id="squad-team-b" rows="10" placeholder="You can paste from Squad Builder using the BBCode format option"></textarea>
-          </div>
-          <div class="group">
-            <label>Squad Notes (optional):</label>
-            <textarea id="squad-notes-team-b" rows="3"></textarea>
-          </div>
-        </fieldset>
+    <div id="report" v-bind:class="[{ 'ready': (ready) }]">
+
+      <div class="menu">
+        <h1>X-Wing</h1>
+        <h2>Playtest Report Form</h2>
+        <button v-bind:class="[{ 'active': (step === 1) }]" v-on:click="step = 1">01. About</button>
+        <button v-bind:class="[{ 'active': (step === 2) }]" v-on:click="step = 2">02. Players</button>
+        <button v-bind:class="[{ 'active': (step === 3) }]" v-on:click="step = 3">03. Results</button>
+        <button v-bind:class="[{ 'active': (step === 4) }]" v-on:click="step = 4">04. Feedback</button>
+        <button v-bind:class="[{ 'active': (step === 5) }]" v-on:click="step = 5">05. View</button>
       </div>
-      <h2>Game Results</h2>
-      <fieldset>
-        <legend>Match Record</legend>
-        <div class="group">
-          <label>Winner:</label>
-          <select id="victor">
-            <option value="Player One">Player One</option>
-            <option value="Player Two">Player Two</option>
-          </select>
+
+      <div class="body">
+        <div class="step" v-if="step === 1">
+
+          <div class="columns block">
+            <div class="column">
+              <div class="field is-text">
+                <label class="label" for="report.about.lead">Playtest Lead</label>
+                <input id="report.about.lead" name="Playtest Lead" type="text" v-model="report.about.lead" placeholder="eg. Paul Heaver" />
+              </div>
+              <div class="field is-text is-half">
+                <label class="label" for="report.about.date">Date of test <span>yyyy/mm/dd</span></label>
+                <input id="report.about.date" name="Date" type="text" v-model="report.about.date" placeholder="yyyy/mm/dd" />
+              </div>
+              <div class="field is-text">
+                <label class="label" for="report.about.components">Components tested</label>
+                <textarea id="report.about.components" name="Components tested" v-model="report.about.components" placeholder="List the components or upgrades you are using in this playtest. Don’t forget to add version numbers."></textarea>
+              </div>
+            </div>
+            <div class="column">
+              <div class="field is-text">
+                <label class="label" for="report.subject">Subject of Test</label>
+                <input id="report.subject" name="Test Subject" type="text" v-model="report.subject" placeholder="eg. Revised Palpatine" />
+              </div>
+              <div class="field is-checkbox">
+                <span class="label">Purpose of test</span>
+                <div class="field-list">
+                  <label>
+                    <input name="Functional test" type="checkbox" v-model="report.about.purpose.functional" />
+                    <div></div>
+                    <b>Functional test</b>
+                    <span>I’m testing the functionality and usability of new components or upgrades.</span>
+                  </label>
+                  <label>
+                    <input name="Balance test" type="checkbox" v-model="report.about.purpose.balance" />
+                    <div></div>
+                    <b>Balance test</b>
+                    <span>I’m testing how balanced any new components or upgrades are.</span>
+                  </label>
+                  <label>
+                    <input name="Control test" type="checkbox" v-model="report.about.purpose.control" />
+                    <div></div>
+                    <b>Control test</b>
+                    <span>I’m test new components or upgrades against an established baseline.</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="buttons">
+            <button class="back" disabled="disabled">Back</button>
+            <button class="next" v-on:click="step = 2">Next</button>
+          </div>
+
         </div>
-        <div class="group stack">
-          <label>Points destroyed:</label>
-          <input id="destroyed-team-a" type="number" class="wide" placeholder="Player One" min="0" max="100" />
-          <input id="destroyed-team-b" type="number" class="wide" placeholder="Player Two" min="0" max="100"  />
+        <div class="step" v-if="step === 2">
+
+          <div class="columns">
+            <div class="column">
+
+              <div class="field is-text">
+                <label class="label" for="report.player[0].name">Player One</label>
+                <input id="report.player[0].name" name="Player One" type="text" v-model="report.player[0].name" placeholder="eg. Alex Davy" />
+              </div>
+              <div class="field is-text">
+                <label class="label" for="report.player[0].type">Squad <span>Type and List</span></label>
+                <input id="report.player[0].type" name="Squad Type" type="text" v-model="report.player[0].type" placeholder="eg. Dengaroo" />
+                <textarea id="report.player[0].list" name="Squad" v-model="report.player[0].list" placeholder="Write here the squad used for testing (including version numbers) or paste from squad-builder in BBCode format." style="min-height: 300px; margin-top: 5px;"></textarea>
+              </div>
+              <div class="field is-text">
+                <label class="label" for="report.player[0].notes">Notes</label>
+                <textarea id="report.player[0].notes" name="Notes" v-model="report.player[0].notes" placeholder="What are you trying to test using this squad? What is your expected result?"></textarea>
+              </div>
+            </div>
+
+            <div class="column">
+              <div class="field is-text">
+                <label class="label" for="report.player[1].name">Player Two</label>
+                <input id="report.player[1].name" name="Player One" type="text" v-model="report.player[1].name" placeholder="eg. Frank Brooks" />
+              </div>
+              <div class="field is-text">
+                <label class="label" for="report.player[1].type">Squad <span>Type and List</span></label>
+                <input id="report.player[1].type" name="Squad Type" type="text" v-model="report.player[1].type" placeholder="eg. TIE Swarm" />
+                <textarea id="report.player[1].list" name="Squad" v-model="report.player[1].list" placeholder="Write here the squad used for testing (including version numbers) or paste from squad-builder in BBCode format." style="min-height: 300px; margin-top: 5px;"></textarea>
+              </div>
+              <div class="field is-text">
+                <label class="label" for="report.player[1].notes">Notes</label>
+                <textarea id="report.player[1].notes" name="Notes" v-model="report.player[1].notes" placeholder="What are you trying to test using this squad? What is your expected result?"></textarea>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="buttons">
+            <button class="back" v-on:click="step = 1">Back</button>
+            <button class="next" v-on:click="step = 3">Next</button>
+          </div>
         </div>
-        <div class="group stack">
-          <label>Rounds:</label>
-          <input id="rounds" type="number" class="thin" step="1" placeholder="10" />
+        <div class="step" v-if="step === 3">
+
+          <div class="columns block">
+            <div class="column">
+
+              <div class="field is-select block">
+                <label class="label" for="report.results.winner">Winner</label>
+                <select id="report.results.winner" name="Winner" v-model="report.results.winner">
+                  <option v-if="report.player[0].name === null && report.player[1].name === null" disabled="disabled" selected="selected" value="null">No players added</option>
+                  <option v-if="report.player[0].name !== null && report.player[1].name !== null" v-for="player in report.player" v-bind:value="player.name">{{ player.name }}</option>
+                </select>
+              </div>
+
+            </div>
+            <div class="column"></div>
+          </div>
+
+          <div class="columns block">
+            <div class="column">
+              <div class="columns">
+                <div class="column">
+                  <div class="field is-text">
+                  <label class="label" for="report.results.points[0]">Score <span>Winner</span></label>
+                    <input id="report.results.points[0]" name="Points Destroyed" type="number" v-model="report.results.points[0]" placeholder="eg. 90" />
+                  </div>
+                </div>
+                <div class="column">
+                  <div class="field is-text">
+                    <label class="label" for="report.results.points[1]">Score <span>Loser</span></label>
+                    <input id="report.results.points[1]" name="Points Destroyed" type="number" v-model="report.results.points[1]" placeholder="eg. 42" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="columns">
+                <div class="column">
+                  <div class="field is-text">
+                    <label class="label" for="report.results.rounds">Rounds Played</label>
+                    <input id="report.results.rounds" name="Rounds Played" type="number" v-model="report.results.rounds" placeholder="eg. 10" />
+                  </div>
+                </div>
+                <div class="column">
+                  <div class="field is-text">
+                    <label class="label" for="report.results.time">Time Spent <span>Mins</span></label>
+                    <input id="report.results.time" name="Rounds Played" type="number" v-model="report.results.time" placeholder="eg. 75" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="field is-text block">
+            <label class="label" for="report.results.summary">Summary of match <span>Optional</span></label>
+            <textarea id="report.results.summary" name="Summary" v-model="report.results.summary" placeholder="List out rounds and when ships were destroyed, took damage, or otherwise important events to support your report. Only include this if you think it supports a concern you have. Don't feel compelled to include this if you don't think it contributes to your argument." style="min-height: 400px"></textarea>
+          </div>
+
+          <div class="buttons">
+            <button class="back" v-on:click="step = 2">Back</button>
+            <button class="next" v-on:click="step = 4">Next</button>
+          </div>
         </div>
-        <div class="group stack">
-          <label>Time:</label>
-          <input id="time" type="number" class="thin" step="1" placeholder="75" /> mins
+        <div class="step" v-if="step === 4">
+
+          <div class="field is-text">
+            <label class="label" for="report.feedback.functionality">Functionality/Usability</label>
+            <textarea id="report.feedback.functionality" name="Functionality/Usability" v-model="report.feedback.functionality" placeholder="Describe your thoughts or concerns regarding the functionality or usability of these components. For example: Do they make sense? Are they difficult to use? Should the wording change? Is the interaction clunky? etc." style="min-height: 400px"></textarea>
+          </div>
+          <div class="field is-text">
+            <label class="label" for="report.feedback.balance">Balance</label>
+            <textarea id="report.feedback.balance" name="Balance" v-model="report.feedback.balance" placeholder="Describe your thoughts or concerns regarding the balance of these components. For example: Are they too good? Not good enough? Cost too many points? Leads to a specific broken combo? Poor synergy? etc." style="min-height: 400px"></textarea>
+          </div>
+          <div class="field is-text">
+            <label class="label" for="report.feedback.other">Other</label>
+            <textarea id="report.feedback.other" name="Other" v-model="report.feedback.other" placeholder="Describe any other thoughts or concerns you have about these components. For example: Grammatical, thematic, language consistency, etc." style="min-height: 200px"></textarea>
+          </div>
+
+          <div class="buttons">
+            <button class="back" v-on:click="step = 3">Back</button>
+            <button class="next" v-on:click="step = 5">View</button>
+          </div>
         </div>
-      </fieldset>
-      <fieldset>
-        <legend>Concerns</legend>
-        <div class="group">
-          <label>(Major) Functionality/Usability:</label>
-          <textarea id="concerns-major-usability" rows="10" placeholder="Here is where you list concerns about whether a card works, unforeseen interactions, whether the abilities contribute to the game, etc."></textarea>
+        <div class="step" v-if="step === 5">
+          <div class="field is-text">
+            <span class="label" for="view_subject">Suggested Report Name</span>
+<div class="view" id="view_subject">[Playtest]{{ (report.about.purpose.functional) ? '[FT]' : '' }}{{ (report.about.purpose.balance) ? '[BT]' : '' }}{{ (report.about.purpose.control) ? '[CT]' : '' }}{{ (report.subject) ? ' ['+report.subject+']' : '' }}{{ (report.player[0].type && report.player[1].type) ? ' ' + report.player[0].type + ' vs ' + report.player[1].type : '' }}</div>
+          </div>
+          <div class="field is-text">
+            <span class="label" for="view_formatted">Formatted Report</span>
+            <div class="view" id="view_formatted">
+<pre id="clipboard">[b]Playtest Lead:[/b] {{ report.about.lead || 'N/A' }}
+[b]Playtest Date:[/b] {{ report.about.date || 'N/A' }}
+[b]Playtest Purpose:[/b]
+[[tt]{{ (report.about.purpose.functional) ? '×' : ' ' }}[/tt]] Functional test
+[[tt]{{ (report.about.purpose.balance) ? '×' : ' ' }}[/tt]] Balance test
+[[tt]{{ (report.about.purpose.control) ? '×' : ' ' }}[/tt]] Control test
+
+[b]Components Tested:[/b]
+[i]{{ report.about.components || 'None listed' }}[/i]
+
+[hr]
+
+[b][u]{{ report.player[0].name || 'Player One' }}[/u][/b]
+[i]{{ report.player[0].notes || 'No comments' }}[/i]
+
+{{ report.player[0].list || 'No squad added' }}
+
+[b][u]{{ report.player[1].name || 'Player Two' }}[/u][/b]
+[i]{{ report.player[1].notes || 'No comments' }}[/i]
+
+{{ report.player[1].list || 'No squad added' }}
+
+[hr]
+
+[b][u]Game Result[/u][/b]
+
+[b]Winner:[/b] {{ report.results.winner || 'N/A' }} ({{ report.results.points[0] }} vs {{ report.results.points[1] }})
+[b]Rounds:[/b] {{ report.results.rounds || 'unknown' }} rounds
+[b]Time:[/b] {{ report.results.time || 'unknown' }} mins
+
+[i]{{ report.results.summary || 'No summary of game added' }}[/i]
+
+[hr]
+
+[b][u]Feedback (Functionality/Usability)[/u][/b]
+
+{{ report.feedback.functionality || 'N/A' }}
+
+[b][u]Feedback (Balance)[/u][/b]
+
+{{ report.feedback.balance || 'N/A' }}
+
+[b][u]Feedback (Other)[/u][/b]
+
+{{ report.feedback.other || 'N/A' }}
+
+[hr]
+
+[i]Generated using the [url=https://nopr.github.io/xwing-report/]X-Wing Playtest Report Form[/url][/i]</pre>
+          </div>
         </div>
-        <div class="group">
-          <label>(Major) Balance:</label>
-          <textarea id="concerns-major-balance" rows="10" placeholder="Here is where you list concerns about the costs of cards, how game balance is impacted, whether it's too good or not good enough, etc."></textarea>
+        <div class="buttons">
+          <button class="back" v-on:click="step = 3">Back</button>
+          <button class="next copy" data-clipboard-target="#clipboard">Copy to Clipboard</button>
         </div>
-        <div class="group">
-          <label>(Minor) Other:</label>
-          <textarea id="concerns-minor-other" rows="4" placeholder="Here is where you can list other concerns. These may be grammatical, thematic, language consistency, etc."></textarea>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend>(Optional) Play by Play</legend>
-        <p class="group info">List out rounds and when ships were destroyed, took damage, or otherwise important events to support your report. Only include this if you think it supports a concern you listed above. Do not feel compelled to include this if you do not think it contributes to your argument.</p>
-        <div class="group">
-          <textarea id="match-events" rows="10" cols="30">Round 2:
-- Ship 1 (A)
-- Ship 1 (B)
-Round 4:
-- Ship 2 (A)
--Round 7:
-- Ship 3 (A)</textarea>
-        </div>
-      </fieldset>
-      <button id="submit" type="button" class="button">Format</button>
-      <a href="#" id="download" class="button hide" target="_blank">Download</a>
-    </form>
-    <div id="completed" style="display:none;">
-      <pre id="report"></pre>
+      </div>
+
     </div>
+    <script src="assets/clipboard.min.js"></script>
+    <script src="assets/vue.min.js"></script>
+    <script src="assets/report.js"></script>
   </body>
 </html>

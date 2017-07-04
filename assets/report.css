@@ -1,0 +1,328 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  height: 100%;
+}
+
+body {
+
+  -webkit-font-smoothing: antialiased;
+
+  background: #eee;
+  position: relative;
+
+  line-height: 20px;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+
+}
+
+.body {
+  display: none;
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 800px;
+}
+.ready .body {
+  display: block;
+}
+
+.menu {
+  text-align: center;
+  background: #222;
+  padding: 20px 0 0;
+  font-size: 0;
+}
+.menu button {
+  outline: 0;
+  padding: 20px 10px;
+  border: 0;
+  margin: 0;
+  background: transparent;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: inherit;
+  text-transform: uppercase;
+  color: #888;
+}
+.menu button:hover {
+  color: #ccc;
+}
+.menu button.active {
+  color: #fff;
+}
+.menu h1 {
+  margin: 0;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.menu h2 {
+  margin: 0;
+  color: #888;
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+label, input, select, textarea, button {
+  cursor: pointer;
+}
+
+.block + .block {
+  margin-top: 20px;
+}
+
+.columns {
+  display: table;
+  width: 100%;
+}
+.columns .column {
+  width: 50%;
+  display: table-cell;
+  vertical-align: top;
+  box-sizing: border-box;
+}
+.columns .column:first-child {
+  float: left;
+  padding-right: 20px;
+}
+.columns .column:last-child {
+  padding-left: 20px;
+  float: right;
+}
+.columns .columns .column:first-child {
+  padding-right: 2.5px;
+}
+.columns .columns .column:last-child {
+  padding-left: 2.5px;
+}
+
+.field {
+  display: block;
+  position: relative;
+}
+.field + .field {
+  margin-top: 20px;
+}
+.label {
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.label span {
+  margin-left: 5px;
+  font-weight: normal;
+  color: #888;
+}
+.label span:before {
+  content: '(';
+}
+.label span:after {
+  content: ')'
+}
+
+.field.is-text input,
+.field.is-text textarea {
+  cursor: pointer;
+  box-sizing: border-box;
+  border: 1px solid #aaa;
+  border-radius: 0;
+  line-height: 40px;
+  height: 40px;
+  width: 100%;
+  padding: 0 10px;
+  font-family: inherit;
+  font-size: inherit;
+  max-width: 100%;
+  min-width: 100%;
+}
+.field.is-text textarea {
+  height: auto;
+  min-height: 120px;
+  line-height: 20px;
+  padding: 10px;
+}
+.field.is-text input:focus,
+.field.is-text textarea:focus {
+  outline: 0;
+  box-shadow: 0 0 0 5px #ddd;
+}
+.field.is-select select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  border: 1px solid #aaa;
+  border-radius: 0;
+  line-height: 40px;
+  height: 40px;
+  width: 100%;
+  padding: 0 10px;
+  font-family: inherit;
+  font-size: inherit;
+}
+.field.is-select select:focus {
+  outline: 0;
+  box-shadow: 0 0 0 5px #ddd;
+}
+.field.is-half input,
+.field.is-half textarea {
+  width: 50%;
+  min-width: 50%;
+  max-width: 50%;
+}
+.field.is-checkbox label {
+  display: block;
+  padding: 10px;
+  padding-left: 40px;
+  background: #fff;
+  overflow: hidden;
+  position: relative;
+}
+.field.is-checkbox label input {
+  position: absolute;
+  left: -20em;
+  top: -20em;
+}
+.field.is-checkbox label input + div {
+  position: absolute;
+  border: 1px solid #aaa;
+  background: white;
+  border-radius: 3px;
+  box-shadow: inset 1px 1px 2px #ddd;
+  text-align: center;
+  width: 14px;
+  height: 14px;
+  left: 12px;
+  top: 12px;
+}
+.field.is-checkbox label input + div:after {
+  content: '';
+  background: transparent;
+  width: 4px;
+  height: 8px;
+  position: absolute;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: rotate(40deg);
+  left: 4px;
+  top: 0px;
+}
+.field.is-checkbox label input:checked + div {
+  background: #222;
+  border-color: #222;
+  box-shadow: none;
+}
+.field.is-checkbox .field-list {
+  border: 1px solid #aaa;
+  overflow: hidden;
+}
+.field.is-checkbox label + label {
+  border-top: 1px solid #aaa;
+}
+.field.is-checkbox label:hover {
+  background: #eee;
+}
+.field.is-checkbox label b {
+  font-weight: 400;
+}
+.field.is-checkbox label span {
+  display: block;
+  color: #888;
+}
+
+.view {
+  text-align: left;
+  background: #fff;
+  border: 1px solid #aaa;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.15);
+  border-radius: 3px;
+  padding: 20px;
+}
+.view pre {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "Source Code Pro", monospace;
+  white-space: pre-wrap;
+  word-break: break-all;
+  overflow: hidden;
+}
+
+.buttons {
+  width: 100%;
+  overflow: hidden;
+  padding-top: 40px;
+  margin-top: 40px;
+  border-top: 1px solid #ccc;
+}
+.buttons button {
+  outline: 0;
+  padding: 10px 30px;
+  border: 2px solid #222;
+  border-radius: 30px;
+  margin: 0;
+  background: transparent;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: inherit;
+  text-transform: uppercase;
+  color: #222;
+}
+.buttons button:hover {
+  border-color: #222;
+  background: #222;
+  color: #fff;
+}
+.buttons button[disabled="disabled"] {
+  opacity: 0.2;
+  cursor: default;
+  background: transparent !important;
+  border-color: #222 !important;
+  color: #222 !important;
+}
+.buttons .back {
+  float: left;
+}
+.buttons .next {
+  float: right;
+}
+
+@media screen and (max-width: 600px) {
+  .columns .column {
+    display: block;
+    width: 100%;
+    padding: 0 !important;
+  }
+  .column + .column {
+    margin-top: 20px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .menu {
+    text-align: left;
+    padding-bottom: 10px;
+  }
+  .menu h1 {
+    margin: 0 20px;
+  }
+  .menu h2 {
+    margin: 0 20px 10px;
+  }
+  .menu button {
+    display: block;
+    padding: 10px 20px;
+  }
+}
