@@ -55,8 +55,16 @@ var report = new Vue({
     }
   },
   created: function () {
-    console.log('created')
+    
     this.ready = true
     this.report.about.date = this.dateme()
+    
+    var clipboard = new Clipboard('.copy')
+    
+    clipboard.on('success', function (event) {
+      alert('Copied')
+      event.clearSelection()
+    })
+    
   }
 })

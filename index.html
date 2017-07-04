@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>X-Wing: Playtest Report</title>
     <meta charset="utf-8" />
+    <title>X-Wing: Playtest Report Form</title>
     <meta name="robots" content="index, follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400" />
-    <link rel="stylesheet" type="text/css" href="report.css" />
+    <link rel="stylesheet" type="text/css" href="assets/report.css" />
   </head>
   <body>
     <div id="report" v-bind:class="[{ 'ready': (ready) }]">
@@ -100,7 +100,7 @@
             <div class="column">
               <div class="field is-text">
                 <label class="label" for="report.player[1].name">Player Two</label>
-                <input id="report.player[1].name" name="Player One" type="text" v-model="report.player[1].name" placeholder="eg. Alex Davy" />
+                <input id="report.player[1].name" name="Player One" type="text" v-model="report.player[1].name" placeholder="eg. Frank Brooks" />
               </div>
               <div class="field is-text">
                 <label class="label" for="report.player[1].type">Squad <span>Type and List</span></label>
@@ -204,15 +204,15 @@
         </div>
         <div class="step" v-if="step === 5">
           <div class="field is-text">
-            <label class="label" for="view_subject">Suggested Report Name</label>
+            <span class="label" for="view_subject">Suggested Report Name</span>
 <div class="view" id="view_subject">[Playtest]{{ (report.about.purpose.functional) ? '[FT]' : '' }}{{ (report.about.purpose.balance) ? '[BT]' : '' }}{{ (report.about.purpose.control) ? '[CT]' : '' }}{{ (report.subject) ? ' ['+report.subject+']' : '' }}{{ (report.player[0].type && report.player[1].type) ? ' ' + report.player[0].type + ' vs ' + report.player[1].type : '' }}</div>
-            </div>
-            <div class="field is-text">
-              <label class="label" for="view_formatted">Formatted Report</label>
-              <div class="view" id="view_formatted">
-<pre>[b]Playtest Lead:[/b] {{ report.about.lead || 'N/A' }}
+          </div>
+          <div class="field is-text">
+            <span class="label" for="view_formatted">Formatted Report</span>
+            <div class="view" id="view_formatted">
+<pre id="clipboard">[b]Playtest Lead:[/b] {{ report.about.lead || 'N/A' }}
 [b]Playtest Date:[/b] {{ report.about.date || 'N/A' }}
-[b]Playtest Aim:[/b]
+[b]Playtest Purpose:[/b]
 [[tt]{{ (report.about.purpose.functional) ? '×' : ' ' }}[/tt]] Functional test
 [[tt]{{ (report.about.purpose.balance) ? '×' : ' ' }}[/tt]] Balance test
 [[tt]{{ (report.about.purpose.control) ? '×' : ' ' }}[/tt]] Control test
@@ -222,15 +222,13 @@
 
 [hr]
 
-[b][u]Players[/u][/b]
-
-[u]{{ report.player[0].name || 'Player One' }}[/u]
-{{ report.player[0].notes || 'No comments' }}
+[b][u]{{ report.player[0].name || 'Player One' }}[/u][/b]
+[i]{{ report.player[0].notes || 'No comments' }}[/i]
 
 {{ report.player[0].list || 'No squad added' }}
 
-[u]{{ report.player[1].name || 'Player Two' }}[/u]
-{{ report.player[1].notes || 'No comments' }}
+[b][u]{{ report.player[1].name || 'Player Two' }}[/u][/b]
+[i]{{ report.player[1].notes || 'No comments' }}[/i]
 
 {{ report.player[1].list || 'No squad added' }}
 
@@ -256,17 +254,22 @@
 
 [b][u]Feedback (Other)[/u][/b]
 
-{{ report.feedback.other || 'N/A' }}</pre>
-            </div>
+{{ report.feedback.other || 'N/A' }}
+
+[hr]
+
+[i]Generated using the [url=https://nopr.github.io/xwing-report/]X-Wing Playtest Report Form[/url][/i]</pre>
           </div>
-          <div class="buttons">
-            <button class="back" v-on:click="step = 3">Back</button>
-          </div>
+        </div>
+        <div class="buttons">
+          <button class="back" v-on:click="step = 3">Back</button>
+          <button class="next copy" data-clipboard-target="#clipboard">Copy to Clipboard</button>
         </div>
       </div>
 
     </div>
-    <script src="https://unpkg.com/vue"></script>
-    <script src="report.js"></script>
+    <script src="assets/clipboard.min.js"></script>
+    <script src="assets/vue.min.js"></script>
+    <script src="assets/report.js"></script>
   </body>
 </html>

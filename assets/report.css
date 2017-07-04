@@ -49,6 +49,9 @@ body {
   text-transform: uppercase;
   color: #888;
 }
+.menu button:hover {
+  color: #ccc;
+}
 .menu button.active {
   color: #fff;
 }
@@ -239,9 +242,6 @@ label, input, select, textarea, button {
   color: #888;
 }
 
-#view_subject {
-}
-
 .view {
   text-align: left;
   background: #fff;
@@ -281,13 +281,15 @@ label, input, select, textarea, button {
 }
 .buttons button:hover {
   border-color: #222;
-  color: #222;
+  background: #222;
+  color: #fff;
 }
 .buttons button[disabled="disabled"] {
   opacity: 0.2;
   cursor: default;
-  border-color: #666 !important;
-  color: #666 !important;
+  background: transparent !important;
+  border-color: #222 !important;
+  color: #222 !important;
 }
 .buttons .back {
   float: left;
