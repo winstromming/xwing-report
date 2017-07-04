@@ -257,6 +257,8 @@ label, input, select, textarea, button {
   font-weight: 400;
   font-family: "Source Code Pro", monospace;
   white-space: pre-wrap;
+  word-break: break-all;
+  overflow: hidden;
 }
 
 .buttons {
