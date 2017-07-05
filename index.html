@@ -37,13 +37,13 @@
               </div>
               <div class="field is-text">
                 <label class="label" for="report.about.components">Components tested</label>
-                <textarea id="report.about.components" name="Components tested" v-model="report.about.components" placeholder="List the components or upgrades you are using in this playtest. Don’t forget to add version numbers."></textarea>
+                <textarea id="report.about.components" name="Components tested" v-model="report.about.components" placeholder="List the specific, individual components or upgrades you are using in this playtest. Don’t forget to add version numbers. For example:&#10;&#10; - Guidance Chips v2,&#10; - Plasma Torpedo v2" style="min-height: 160px;"></textarea>
               </div>
             </div>
             <div class="column">
               <div class="field is-text">
-                <label class="label" for="report.subject">Subject of Test</label>
-                <input id="report.subject" name="Test Subject" type="text" v-model="report.subject" placeholder="eg. Revised Palpatine" />
+                <label class="label" for="report.subject">Subject of Test <span>Project Codename</span></label>
+                <input id="report.subject" name="Test Subject" type="text" v-model="report.subject" placeholder="eg. Sparrow" />
               </div>
               <div class="field is-checkbox">
                 <span class="label">Purpose of test</span>
@@ -104,7 +104,7 @@
               </div>
               <div class="field is-text">
                 <label class="label" for="report.player[1].type">Squad <span>Type and List</span></label>
-                <input id="report.player[1].type" name="Squad Type" type="text" v-model="report.player[1].type" placeholder="eg. TIE Swarm" />
+                <input id="report.player[1].type" name="Squad Type" type="text" v-model="report.player[1].type" placeholder="eg. Crackswarm" />
                 <textarea id="report.player[1].list" name="Squad" v-model="report.player[1].list" placeholder="Write here the squad used for testing (including version numbers) or paste from squad-builder in BBCode format." style="min-height: 300px; margin-top: 5px;"></textarea>
               </div>
               <div class="field is-text">
