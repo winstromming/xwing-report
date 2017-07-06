@@ -93,7 +93,7 @@
               </div>
               <div class="field is-text">
                 <label class="label" for="report.player[0].notes">Notes</label>
-                <textarea id="report.player[0].notes" name="Notes" v-model="report.player[0].notes" placeholder="What are you trying to test using this squad? What is your expected result?"></textarea>
+                <textarea id="report.player[0].notes" name="Notes" v-model="report.player[0].notes" placeholder="What are you trying to test using this squad? What is your expected result? Are you testing a specific component?"></textarea>
               </div>
             </div>
 
@@ -109,7 +109,7 @@
               </div>
               <div class="field is-text">
                 <label class="label" for="report.player[1].notes">Notes</label>
-                <textarea id="report.player[1].notes" name="Notes" v-model="report.player[1].notes" placeholder="What are you trying to test using this squad? What is your expected result?"></textarea>
+                <textarea id="report.player[1].notes" name="Notes" v-model="report.player[1].notes" placeholder="What are you trying to test using this squad? What is your expected result? Are you testing a specific component?"></textarea>
               </div>
             </div>
 
@@ -186,15 +186,15 @@
 
           <div class="field is-text">
             <label class="label" for="report.feedback.functionality">Functionality/Usability</label>
-            <textarea id="report.feedback.functionality" name="Functionality/Usability" v-model="report.feedback.functionality" placeholder="Describe your thoughts or concerns regarding the functionality or usability of these components. For example: Do they make sense? Are they difficult to use? Should the wording change? Is the interaction clunky? etc." style="min-height: 400px"></textarea>
+            <textarea id="report.feedback.functionality" name="Functionality/Usability" v-model="report.feedback.functionality" placeholder="Describe your thoughts or concerns regarding the functionality or usability of these components. For example: Do they make sense? Are they difficult to use? Should the wording change? Is the interaction clunky?" style="min-height: 400px"></textarea>
           </div>
           <div class="field is-text">
             <label class="label" for="report.feedback.balance">Balance</label>
-            <textarea id="report.feedback.balance" name="Balance" v-model="report.feedback.balance" placeholder="Describe your thoughts or concerns regarding the balance of these components. For example: Are they too good? Not good enough? Cost too many points? Leads to a specific broken combo? Poor synergy? etc." style="min-height: 400px"></textarea>
+            <textarea id="report.feedback.balance" name="Balance" v-model="report.feedback.balance" placeholder="Describe your thoughts or concerns regarding the balance of these components. For example: Are they too good? Not good enough? Cost too many points? Leads to a specific broken combo? Poor synergy?" style="min-height: 400px"></textarea>
           </div>
           <div class="field is-text">
             <label class="label" for="report.feedback.other">Other</label>
-            <textarea id="report.feedback.other" name="Other" v-model="report.feedback.other" placeholder="Describe any other thoughts or concerns you have about these components. For example: Grammatical, thematic, language consistency, etc." style="min-height: 200px"></textarea>
+            <textarea id="report.feedback.other" name="Other" v-model="report.feedback.other" placeholder="Describe any other thoughts or concerns you have about these components. Should the language change? Are there grammar problems? Do you have concerns about theme?" style="min-height: 200px"></textarea>
           </div>
 
           <div class="buttons">
