@@ -213,9 +213,9 @@
 <pre id="clipboard">[b]Playtest Lead:[/b] {{ report.about.lead || 'N/A' }}
 [b]Playtest Date:[/b] {{ report.about.date || 'N/A' }}
 [b]Playtest Purpose:[/b]
-[[tt]{{ (report.about.purpose.functional) ? '×' : ' ' }}[/tt]] Functional test
-[[tt]{{ (report.about.purpose.balance) ? '×' : ' ' }}[/tt]] Balance test
-[[tt]{{ (report.about.purpose.control) ? '×' : ' ' }}[/tt]] Control test
+[[tt]{{ (report.about.purpose.functional) ? '+' : ' ' }}[/tt]] Functional test
+[[tt]{{ (report.about.purpose.balance) ? '+' : ' ' }}[/tt]] Balance test
+[[tt]{{ (report.about.purpose.control) ? '+' : ' ' }}[/tt]] Control test
 
 [b]Components Tested:[/b]
 [i]{{ report.about.components || 'None listed' }}[/i]
